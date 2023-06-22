@@ -37,7 +37,7 @@ function App() {
               <Route path="/menu" element={<VegBox flag={false} />} /> 
               <Route path="/services" element={<Services />}/> 
               <Route path={"/dashboard/*"} element={<Dashboard />} />
-              <Route path="/seller" element={<SellerDashboard />} />
+              <Route path={"/seller/*"} element={<SellerDashboard />} />
           </Routes>
         </main>
       </div>

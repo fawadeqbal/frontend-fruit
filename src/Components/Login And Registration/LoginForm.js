@@ -20,7 +20,7 @@ const LoginForm = () => {
         navigate('/dashboard/*');
         }
         else if(Refemail.current.value==='seller@gmail.com' && Refpassword.current.value==='12345' ){
-            navigate('/seller')
+            navigate('/seller/*')
         }
         else{
             navigate('/')
