@@ -1,0 +1,23 @@
+.logo{
+    width:12rem;
+    position: absolute;
+    top: 0rem;
+    object-fit: cover;
+}
+.links-in-left{
+    text-decoration: none;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-left: 0.5rem solid #ff0000;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.links-in-left:hover {
+  color: white;
+  background-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 40px #ff0000, 0 0 40px #ff0000;
+  transition-delay: 500s;
+}
+.links-in-left a{
+  text-decoration: none;
+}

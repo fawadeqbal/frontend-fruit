@@ -1,0 +1,60 @@
+.dH-main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.dH-p1{
+    font-size: larger;
+    color: #2e2e2e;
+    font-weight: 500;
+}
+
+#search-dh{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.search-icon-dh{
+    font-size: larger;
+    color: rgb(71, 69, 69);
+}
+
+#s-div-dh{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0.5rem;
+    color: #9ca0ab;
+    border-radius: 3rem;
+    backdrop-filter:blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
+.search-box-dh{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 15rem;
+    color: #515151;
+    font-weight: 600;
+
+}
+
+#icon-2{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    background-color: #9ca0ab;
+    backdrop-filter:blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

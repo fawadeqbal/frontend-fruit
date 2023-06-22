@@ -1,0 +1,58 @@
+.first{
+    /* width: 100%; */
+    height: auto;
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    margin-right: 5rem;
+}
+
+.first-div{
+    width: 100%;
+    display: felx;
+    align-items: cetner;
+    justify-content: center;
+}
+
+.para-tag{
+    font-size:2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    position: relative;
+    color: #2e2e2e;
+}
+.para-tag::before{
+    position: absolute;
+    content: "";
+    border-radius: 0.5rem;
+    width: 8rem;
+    height: 0.25rem;
+    bottom: -0.5rem;
+    left: 0rem;
+    background-image: linear-gradient(to top right, #ff9933, #ff6600);
+    transition: all;
+    transition-duration: 100s;
+    transition: ease-in-out;
+}
+
+.icon-cnt{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background-color: #ff9933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.icon-cnt:hover{
+    background-color: #ff6600;    
+    transition: all ease-in-out ;
+    transition-duration: 0.1s;
+}
+
+.chev-icon{
+    font-size: larger;
+    color: white;
+}

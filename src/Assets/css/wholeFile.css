@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-padding-right: 1830px;
+    
+
+  }
+  .wrap-Container {
+    width: 100vw;
+    min-width: 100vw;
+    height: auto;
+    background-color: #f7ebeb;
+    /* position: fixed; */
+    overflow: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #main {
+    /* margin-top: 5.5rem; */
+    margin-left: 0;
+    /* padding: 2rem; */
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+
+  body::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
+    html{
+      scrollbar-width: none;
+    }

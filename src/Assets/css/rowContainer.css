@@ -1,0 +1,25 @@
+
+.inner-div{
+    width: 25.25rem;
+    height: 14.25rem;
+    background-color: rgba(256,256,256,0.9);
+    
+    padding: 0.5rem;
+    margin:3rem 0rem;
+    backdrop-filter: blur(20px);
+    border-radius: 0.5rem;
+    min-width: 21.25rem;
+overflow: hidden;    
+}
+.inner-div:hover
+{box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);}
+
+
+.review-stars{
+    position: absolute;
+    top: 12rem;
+    font-size: 1.3rem;
+  
+}
+
+
