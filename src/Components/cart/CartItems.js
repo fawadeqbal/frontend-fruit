@@ -60,7 +60,7 @@ const CartItems = ({ item, setFlag, flag}) => {
   
   return (
     <div id="cart-items-cart">
-      <img className="cart-img" src={`http://localhost:5000/uploads/${item?.image}`} alt="img" />
+      <img className="cart-img" src={`https://elitebazar-server.onrender.com/uploads/${item?.image}`} alt="img" />
       <div className="cart-name-div">
         <p className="cart-name-p">{item?.name}</p>
         <p className="cart-name-p">{item?.category}</p>
