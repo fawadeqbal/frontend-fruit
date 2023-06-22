@@ -1,5 +1,4 @@
 import React from "react";
-import DBleft from "./DBleft";
 import DBright from "./DBright";
 
 
