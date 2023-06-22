@@ -19,7 +19,7 @@ const LoginForm = () => {
         if(Refemail.current.value==='basit@gmail.com'&&Refpassword.current.value==='123'){
         navigate('/dashboard/*');
         }
-        else if(Refemail.current.value==='seller' && Refpassword.current.value==='12345' ){
+        else if(Refemail.current.value==='seller@gmail.com' && Refpassword.current.value==='12345' ){
             navigate('/seller')
         }
         else{
