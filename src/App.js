@@ -13,7 +13,7 @@ import Dashboard from "./Components/Admin/Dashboard";
 import Services from "./Components/Home/Services";
 import PaymentPage from "./Components/Payment/PaymentPage";
 import AboutUs from "./Components/Home/AboutUS";
-
+import SellerDashboard from "./Seller/Dashboard";
 
 
 
@@ -37,7 +37,7 @@ function App() {
               <Route path="/menu" element={<VegBox flag={false} />} /> 
               <Route path="/services" element={<Services />}/> 
               <Route path={"/dashboard/*"} element={<Dashboard />} />
-
+              <Route path="/seller" element={<SellerDashboard />} />
           </Routes>
         </main>
       </div>
