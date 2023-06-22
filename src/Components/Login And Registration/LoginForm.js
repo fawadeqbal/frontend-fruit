@@ -16,15 +16,16 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const handleNavigation=(e)=>{
             e.preventDefault();
-        // if(Refemail.current.value==='basit.sardar.comsian@gmail.com'&&Refpassword.current.value==='123'){
-        // navigate('/dashboard/*');
-        // }
+        if(Refemail.current.value==='basit@gmail.com'&&Refpassword.current.value==='123'){
+        navigate('/dashboard/*');
+        }
+        else{
+            navigate('/')
+        }
         // else if(Refemail.current.value===user[1] && Refpassword.current.value===user[2] ){
         //     navigate('/')
         // }
-        // else{
-        //     navigate('/')
-        // }
+        
     }
     
 
