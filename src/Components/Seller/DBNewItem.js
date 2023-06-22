@@ -4,12 +4,7 @@ import "../../Assets/css/createContainer.css"
 import { motion } from "framer-motion";
 
 import { MdFastfood, MdCloudUpload, MdDelete, MdAttachMoney } from "react-icons/md";
-import { categories } from "../../utils/data";
 import Loader from "../Home/Loader";
-import Header from "../Home/Header";
-import vidBackground from "../../Assets/img/createItems.mp4";
-import { useStateValue } from "../../context/StateProvider";
-import axios from "axios";
 import { addProduct } from "../../Services/api";
 
 
