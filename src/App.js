@@ -13,7 +13,7 @@ import Dashboard from "./Components/Admin/Dashboard";
 import Services from "./Components/Home/Services";
 import PaymentPage from "./Components/Payment/PaymentPage";
 import AboutUs from "./Components/Home/AboutUS";
-import SellerDashboard from "./Seller/Dashboard";
+import SellerDashboard from "./Components/Seller/Dashboard";
 
 
 
