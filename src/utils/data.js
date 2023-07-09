@@ -37,7 +37,7 @@ import { createContext } from "react";
 import axios from "axios";
 
 export const heroData=[    
-    {id:5,name:"Fruit", decp:"Fresh Bananas",price:'15.25', imageSrc:f5},   
+    {id:5,name:"Fruit", decp:"Fresh StrawBerry",price:'15.25', imageSrc:f5},   
     {id:9,name:"Fruit", decp:"Fresh Bananas",price:'15.25', imageSrc:f9},   
     {id:3,name:"Vegetable", decp:"Yellow Pepper",price:'25.25', imageSrc:v4},
     {id:4,name:"Vegetable", decp:"Red Pepper",price:'22.25', imageSrc:v3}

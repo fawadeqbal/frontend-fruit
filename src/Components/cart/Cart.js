@@ -8,14 +8,37 @@ import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import CartItems from "./CartItems";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate} from "react-router-dom";
+import SmallBoxScreen from "../testing/SmallBoxScreen";
+import { decodeToken } from "../../Services/api";
 const Cart = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0);
+  const nav = useNavigate();
+  const [smallbox,setSmallbox] = useState(false);
+  useEffect( ()=>{
+    isAuthorized();
+  },[])
 
+  const isAuthorized = async ()=>{
+    const token = localStorage.getItem('token');
+    console.log(token);
+    
+    if(token!=null){
+      const user = await decodeToken(token);
+      console.log(user);
+        if(user.data.message=="Error"){
+          localStorage.removeItem('token');
+          nav("/login")
+        }
+    }
+    else{
+      setSmallbox(true);
+      // nav("/login")
+    }
+  }
   const showCart = () => {
     dispatch({
       type: actionType.SET_CART_SHOW,
@@ -111,6 +134,7 @@ const Cart = () => {
           </p>
         </div>
       )}
+      {(smallbox)&&(<SmallBoxScreen />)}
     </motion.div>
   );
 };

@@ -1,17 +1,18 @@
-import React from "react";
+import React ,{useState} from "react";
 import "../../Assets/css/header.css";
 import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../Assets/img/logo.png";
 import Avatar from "../../Assets/img/avatar.png";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-
+import { decodeToken } from "../../Services/api";
+import SmallBoxScreen from "../testing/SmallBoxScreen";
 
 const Header = ({flag}) => {
   const [{ cartShow, cartItems }, dispatch] = useStateValue();
-  
+  const nav=useNavigate();
   console.log(cartItems);
 
   const handleCart=()=>{
@@ -20,10 +21,34 @@ const Header = ({flag}) => {
       cartShow : !cartShow,
       
     })
+
     
   }
+  const [smallbox,setSmallbox]= useState(false);
+  const isAuthorized=async ()=>{
+    const token = localStorage.getItem('token');
+    if(token){
+      const user = await decodeToken(token);
+      if(!user){
+        localStorage.removeItem('token');
+        nav("/login");
+      }
+    }
+    else{
+      setSmallbox(true);
+    }
+  }
+  const handleToken =async ()=>{
+    const token = localStorage.getItem('token');
+    
+    if(token){
+      localStorage.removeItem('token');
+    }
+     nav("/login");
+  }
+
   return (
-    <header className="container" style={{width:"100vw", backgroundColor: flag? "#f7ebeb": "rgba(248, 230, 224, 0.8)" , }}>
+    <header className="container" style={{width:"100vw", backgroundColor: flag? "#f7ebeb": "" , }}>
       <div className="main-container">
         <Link to="/" className="logo-container">
           <img src={Logo} className="logo" alt="logo" />
@@ -56,17 +81,18 @@ const Header = ({flag}) => {
 
 <div className="dropdown">
 <motion.img 
-         whileTap={{scale: 0.6}}
-         src={Avatar} className="user" alt="userprofile" data-bs-toggle="dropdown"/> 
-  
-  <div className="dropdown-menu" style={{zIndex:"1000"}}>
-   <Link to='/login'><li style={{display:"flex"}}><button className="dropdown-item" type="button">Logout <MdLogout /></button></li></Link> 
+         whileTap={{scale: 0.6}} onClick={isAuthorized}
+         src={Avatar} className="user" alt="userprofile" data-bs-toggle="dropdown"  /> 
+    
+  <div className="dropdown-menu" style={{zIndex:"1000"}} >
+   <li style={{display:"flex"}}><button onClick={handleToken} className="dropdown-item" type="button">Logout <MdLogout /></button></li>
     </div>
 </div>
         </div>
 
         </div>
       </div>
+      {(smallbox)&&(<SmallBoxScreen />)}
     </header>
   );
 };

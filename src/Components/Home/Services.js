@@ -7,10 +7,37 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Cart from "../cart/Cart";
 import { useStateValue } from "../../context/StateProvider";
-
+import { useState,useEffect } from "react";
+import { decodeToken } from "../../Services/api";
+import { useNavigate} from "react-router-dom";
+import SmallBoxScreen from "../testing/SmallBoxScreen";
 const Services =()=>{
 
     const [{cartShow}, dispatch]= useStateValue();
+    const nav = useNavigate();
+
+    const [smallbox,setSmallbox] = useState(false);
+    useEffect( ()=>{
+      isAuthorized();
+    },[])
+  
+    const isAuthorized = async ()=>{
+      const token = localStorage.getItem('token');
+      console.log(token);
+      
+      if(token!=null){
+        const user = await decodeToken(token);
+        console.log(user);
+          if(user.data.message=="Error"){
+            localStorage.removeItem('token');
+            nav("/login")
+          }
+      }
+      else{
+        setSmallbox(true);
+        // nav("/login")
+      }
+    }
     return(
         <div className="container">
             <Header />
@@ -51,6 +78,8 @@ const Services =()=>{
                 </div>
             </div>
             { (cartShow) && (<Cart />)}
+
+             {(smallbox) && (<SmallBoxScreen />)}
             <Footer />
         </div>
     )

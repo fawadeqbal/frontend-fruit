@@ -20,16 +20,17 @@ const RefUserName = useRef();
 
 const nav= useNavigate();
 
+
 const handleSubmit=async(e)=>{
     e.preventDefault();    
-   
+console.log(user);
 await postUser(user);
     nav('/login');
 }
 
 const handleChange = (e) => {   
         setUser({ ...user, [e.target.name]: e.target.value });
-        console.log(user);
+        // console.log(user);
     }
 
 useEffect(()=>{

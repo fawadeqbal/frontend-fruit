@@ -3,26 +3,48 @@ import "../../Assets/css/rowContainer.css";
 import { MdOutlineStarBorder, MdShoppingBasket, MdStarRate } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
+import { decodeToken } from '../../Services/api';
+import SmallBoxScreen from '../testing/SmallBoxScreen';
 
 function RowContainer({ flag, data, scrollValue }) {
   const rowContainerRef = useRef();
-
+  const nav = useNavigate();
   useEffect(() => {
     rowContainerRef.current.scrollLeft += scrollValue;
   }, [scrollValue]);
 
   const [{ cartItems }, dispatch] = useStateValue();
+  
+  const [smallbox,setSmallbox] = useState(false);
 
-  const handleCartItems = (fruit) => {
-    const updatedCartItems = [...cartItems, fruit];
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: updatedCartItems,
-    });
+  const handleCartItems = async (fruit) => {
+    
+    const token = localStorage.getItem('token');
+    if(token){
+      const user = await decodeToken(token);
+      console.log(user);
+        if(user.data.message=="Error"){
+          localStorage.removeItem('token');
+          nav("/login")
+        }
+        else{
+          const updatedCartItems = [...cartItems, fruit];
+          dispatch({
+            type: actionType.SET_CART_ITEMS,
+            cartItems: updatedCartItems,
+          });
+        }
+    }
+    else{
+      setSmallbox(true);
+    }
+    
   };
+
+  
 
   return (
     <div
@@ -87,6 +109,7 @@ function RowContainer({ flag, data, scrollValue }) {
           </div>
         </div>
       ))}
+      {(smallbox)&&(<SmallBoxScreen />)}
     </div>
   );
 }

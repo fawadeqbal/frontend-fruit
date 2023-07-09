@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../Assets/css/AboutUs.css';
 import Footer from './Footer';
 import Header from './Header';
@@ -7,9 +7,35 @@ import bk2 from "../../Assets/img/frBasket.png";
 import bk3 from "../../Assets/img/vegHerb.png";
 import Cart from '../cart/Cart';
 import f3 from "../../Assets/img/f3.png";
+import {  useNavigate } from 'react-router-dom';
+import {decodeToken} from "../../Services/api";
+import SmallBoxScreen from '../testing/SmallBoxScreen';
+import {useState} from "react";
+
 const AboutUs = () => {
+  const nav = useNavigate();
+  const [smallbox,setSmallbox] = useState(false);
+  useEffect( ()=>{
+    isAuthorized();
+  },[])
 
-
+  const isAuthorized = async ()=>{
+    const token = localStorage.getItem('token');
+    console.log(token);
+    
+    if(token!=null){
+      const user = await decodeToken(token);
+      console.log(user);
+        if(user.data.message=="Error"){
+          localStorage.removeItem('token');
+          nav("/login")
+        }
+    }
+    else{
+      setSmallbox(true);
+      // nav("/login")
+    }
+  }
 
   return (
     
@@ -52,6 +78,10 @@ const AboutUs = () => {
                 
                 <img src={bk1} style={{width:"10rem", height:"10rem"}} alt='img' />
             </div>
+            {
+              (smallbox) && (<SmallBoxScreen  />
+              )
+            }
     </div>
     <Footer />
     </div>

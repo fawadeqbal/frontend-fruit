@@ -56,8 +56,12 @@
     margin-right: 2rem;
     margin-bottom: 2rem;
     position: relative;
+    
     top: 2rem;
 }
+
+
+
 .menu{
     display: flex;
     align-items: center;

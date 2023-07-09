@@ -4,9 +4,10 @@
 
 import React from 'react'
 import { MdDelete } from "react-icons/md";
+import { FaPencilAlt } from 'react-icons/fa';
 import {motion} from "framer-motion";
 import {useState,useEffect} from "react";
-import { getProduct } from '../../Services/api';
+import { updateProduct, deleteProduct, getProduct } from '../../Services/api';
 
 
 
@@ -24,7 +25,14 @@ function DBItems() {
       console.log(result.data);
   }
 
-
+  const deleteItem = async (id) =>{
+    await deleteProduct(id);
+    window.location.reload(true);
+  }
+  
+  const UpdateItem = async (id,data)=>{
+    await updateProduct(id, data);
+  }
 
   return (
     <div className="small-container cart-page">
@@ -33,6 +41,7 @@ function DBItems() {
             <th className="thead">Product</th>
             <th className="thead">Price</th>
             <th className="thead">Delete</th>
+            <th className="thead">Update</th>
         </tr>
         {Items &&
       Items.length > 0 &&
@@ -48,8 +57,11 @@ function DBItems() {
                 </div>
                 </td>
             <td>${item.price}</td>
-            <td> <motion.span whileTap={{scale:0.75}} style={{width:"2.5rem",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center", height:"2.5rem", borderRadius:"50%", backgroundColor:"red" }}>
+            <td> <motion.span whileTap={{scale:0.75}} onClick={()=>{deleteItem(item._id)}} style={{width:"2.5rem",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center", height:"2.5rem", borderRadius:"50%", backgroundColor:"red" }}>
             <MdDelete style={{color:"black",}} />
+           </motion.span></td>
+           <td> <motion.span whileTap={{scale:0.75}} onClick={()=>{UpdateItem(item._id)}} style={{width:"2.5rem",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center", height:"2.5rem", borderRadius:"50%", backgroundColor:"red" }}>
+            <FaPencilAlt style={{color:"black",}} />
            </motion.span></td>
         </tr>
        ))}
