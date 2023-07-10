@@ -9,7 +9,7 @@ function DBUser() {
   useEffect(() => {
     getUsers();
     console.log(user);
-  });
+  },[]);
 
   const getUsers = async () => {
     const users = await getUser();

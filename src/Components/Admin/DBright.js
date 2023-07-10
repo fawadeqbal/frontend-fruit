@@ -17,6 +17,7 @@ const DBright=()=>{
                     <Route path="db-order" element={<DBOrder />} />
                     <Route path="/db-item" element={<DBItems />} />
                     <Route path="/db-newItem" element={<DBNewItem />} />
+                    <Route path="/db-newItem/:id" element={<DBNewItem />} />
                     <Route path="/db-user" element={<DBUser />} />
 
                     

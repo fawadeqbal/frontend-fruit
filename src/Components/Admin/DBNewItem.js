@@ -10,10 +10,19 @@ import Header from "../Home/Header";
 import vidBackground from "../../Assets/img/createItems.mp4";
 import { useStateValue } from "../../context/StateProvider";
 import axios from "axios";
-import { addProduct } from "../../Services/api";
-
+import { addProduct, updateProduct } from "../../Services/api";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getProductFromID } from "../../Services/api";
 
 function DBNewItem (){
+    const {id} = useParams();
+    const navigate= useNavigate();
+
+    useEffect(()=>{
+        if(id)
+        populateForm(id);
+    },[])
     const [fields, setFields] = useState(false);
     const [alertStatus, setAlertStatus] = useState("danger");
     const [msg, setMsg] = useState(null);
@@ -26,6 +35,7 @@ function DBNewItem (){
         stock: "",
         image: ""
     });
+
     const [missingFields, setMissingFields] = useState([]);
     const [downloadImgUrl, setDownloadImgUrl] = useState(null);
 
@@ -63,10 +73,7 @@ function DBNewItem (){
 
         }
 
-        const saveDetails = async (e) => {
-
-            // await axios.post("http://localhost:5000/product",product);
-
+        const saveDetails = async (e) => {          
 
             e.preventDefault();
 
@@ -79,22 +86,50 @@ function DBNewItem (){
                 formData.append("image", product.image);
                 formData.append("name", product.name);
                 formData.append("stock", product.stock);
-                formData.append("price", product.price);
+                formData.append("price", product.price.toString());
                 formData.append("category", product.category);
                 formData.append("popular", product.popular);
 
-
-                addProduct(formData);
-                window.location.reload(true);
+                if(id==null)
+               {  console.log("image in ",product.price);
+                await addProduct(formData);}
+                else
+                { 
+                    console.log("Price is ;",product.image);
+                    await updateProduct(formData,id);
+                   
+                }
+               
                 setFields(false);
                 // this.value = "";
+                window.location.reload(true);
+                // navigate("https://localhost:3000/dashboard/db-item");
+                // navigate('/', { replace: true });
             }
             else {
                 setFields(true);
             }
         };
 
-
+        const populateForm = async (id) => {
+            try {
+              const response = await getProductFromID(id);
+              const productData = response.data;
+                console.log(productData);
+              setProduct({
+                name: productData.name,
+                popular: productData.popular,
+                category: productData.category,
+                price: productData.price,
+                stock: productData.stock,
+                image: ""
+              });
+             
+            } catch (error) {
+              console.log("Error in populateForm", error);
+            }
+          };
+          
 
         return (
 

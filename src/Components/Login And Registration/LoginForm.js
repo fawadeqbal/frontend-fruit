@@ -30,7 +30,9 @@ const LoginForm = () => {
         console.log(user);
         if(user.email=="basit.sardar.comsian@gmail.com" && user.password=="basit"){
           nav("/dashboard/db-home")
-        }else{
+        }
+        
+        else{
         try {
           const res = await loginUser(user);
                 res.headers={

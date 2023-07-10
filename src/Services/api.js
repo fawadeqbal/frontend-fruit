@@ -10,23 +10,60 @@ const url="http://localhost:5000"
 export const addProduct = async (Data)=>{
     return await axios.post(`${url}/product`,Data)
 }
+    
+export const updateProduct = async (data, id) => {
+  try {
+    // console.log("data price:", data.get("price"));
+    // const formData = new FormData();
+    // formData.append("image", data.get("image"));
+    // formData.append("name", data.get("name"));
+    // formData.append("stock", data.get("stock"));
+    // formData.append("price", data.get("price").toString());
+    // formData.append("category", data.get("category"));
+    // formData.append("popular", data.get("popular"));
+      const pr = {
+        name: data.get("name"),
+        popular: data.get("popular"),
+        category: data.get("category"),
+        price: data.get("price"),
+        stock: data.get("stock"),
+        image: data.get("image")
+      }
+      console.log(id);
+      console.log("price is api : ", data)
+    return await axios.put(`${url}/product/${id}`, data);
+  } catch (error) {
+    console.log("Error while executing the updateProduct API", error);
+  }
+};
 
+    
 
 export const getProduct = async () => {
     return await axios.get(`${url}/product`);
     
   
   }
+  export const getProductFromID= async(id)=>{
+    return await axios.get(`${url}/product/${id}`);
+  }
 
 
   export const deleteProduct = async (id) =>{
     return await axios.delete(`${url}/product/${id}`)
   }
-
-  export const updateProduct = async (id, data) => {
-    return await axios.put(`${url}/product/${id}`, data);
-  }
-
+  // export const updateProduct = async (data,id) => {
+  //   const formData = new FormData();
+  //   formData.append("image", data.get("image"));
+  //   formData.append("name", data.get("name"));
+  //   formData.append("stock", data.get("stock"));
+  //   formData.append("price", data.get("price").toString());
+  //   formData.append("category", data.get("category"));
+  //   formData.append("popular", data.get("popular"));
+  //           console.log("price is in updateProduct", data.get("price").toString());
+    // return await axios.put(`${url}/product/update`, data);
+  // };
+  
 
   // User Related API
   export const postUser = async (data) => {
